@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raquel Miranda — Instructional Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0c0c0d;
+      --surface: #131315;
+      --offwhite: #edeae4;
+      --muted:   #7a7870;
+      --accent:  #9d8eff;
+      --accent-dim: #6b5dcf22;
+      --serif: 'Fraunces', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--offwhite);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      mix-blend-mode: overlay;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: linear-gradient(to bottom, var(--black) 40%, transparent);
+    }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: var(--offwhite);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--offwhite); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 4rem 6rem;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.4s forwards;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 2.5rem;
+      max-width: 42ch;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.6s forwards;
+    }
+
+    .hero-sub strong {
+      color: var(--offwhite);
+      font-weight: 400;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 4rem;
+      writing-mode: vertical-rl;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 1s forwards;
+    }
+
+    .hero-scroll::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--muted));
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 8rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .about-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .about-body {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+    }
+
+    .about-body p + p { margin-top: 1.25rem; }
+
+    .about-body strong {
+      color: var(--offwhite);
+      font-weight: 400;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid #2a2a30;
+      color: var(--muted);
+      padding: 0.35rem 0.9rem;
+      border-radius: 2rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .tag:hover {
+      border-color: var(--accent);
+      color: var(--offwhite);
+    }
+
+    /* ── WORK ── */
+    .work-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem 10rem;
+    }
+
+    .featured-project {
+      background: var(--surface);
+      border: 1px solid #1e1e22;
+      border-radius: 4px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .featured-project:hover {
+      border-color: #3a3a44;
+    }
+
+    .project-info {
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-top: 1rem;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-top: 1.25rem;
+      max-width: 38ch;
+    }
+
+    .project-desc strong {
+      color: var(--offwhite);
+      font-weight: 400;
+    }
+
+    .project-meta {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .meta-list {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta-value {
+      font-size: 0.85rem;
+      color: var(--offwhite);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      background: #b8a9ff;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--offwhite);
+      border: 1px solid #2a2a30;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .project-visual {
+      position: relative;
+      background: #0f0f11;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Simulated UI inside the visual pane */
+    .sim-preview {
+      width: 88%;
+      height: 80%;
+      border: 1px solid #252530;
+      border-radius: 4px;
+      background: #0d0d10;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+    }
+
+    .sim-topbar {
+      background: #111116;
+      border-bottom: 1px solid #1e1e28;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sim-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2a2a35;
+    }
+
+    .sim-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: #444;
+      margin-left: 0.5rem;
+      font-family: var(--sans);
+    }
+
+    .sim-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow: hidden;
+    }
+
+    .sim-scenario {
+      font-size: 0.68rem;
+      color: #4a4a5a;
+      font-family: var(--sans);
+      line-height: 1.5;
+    }
+
+    .sim-bubble {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    .sim-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      font-family: var(--sans);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .av-l { background: #1e2a3a; color: #5b9bd5; }
+    .av-r { background: #2a1e3a; color: #9d8eff; }
+    .av-d { background: #2a2a1e; color: #c4a85a; }
+    .av-m { background: #1e2a2a; color: #5bb5b5; }
+
+    .sim-text {
+      background: #161620;
+      border: 1px solid #1e1e2a;
+      border-radius: 2px 8px 8px 8px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.65rem;
+      color: #5a5a6a;
+      font-family: var(--sans);
+      line-height: 1.5;
+      max-width: 180px;
+    }
+
+    .sim-input {
+      margin-top: auto;
+      border-top: 1px solid #1a1a22;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .sim-input-bar {
+      flex: 1;
+      height: 28px;
+      background: #111118;
+      border: 1px solid #1e1e28;
+      border-radius: 2px;
+      font-size: 0.6rem;
+      color: #333;
+      font-family: var(--sans);
+      display: flex;
+      align-items: center;
+      padding: 0 0.75rem;
+    }
+
+    .sim-send {
+      width: 28px;
+      height: 28px;
+      background: #9d8eff22;
+      border: 1px solid #9d8eff44;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sim-send svg { width: 12px; height: 12px; stroke: #9d8eff; }
+
+    /* ── MORE PROJECTS PLACEHOLDER ── */
+    .more-projects {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #1a1a1e;
+      border: 1px solid #1a1a1e;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .more-card {
+      background: var(--surface);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background 0.2s;
+    }
+
+    .more-card:hover { background: #17171b; }
+
+    .more-card-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    .more-card-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #3a3a44;
+    }
+
+    .more-card-status {
+      font-size: 0.7rem;
+      color: #2e2e38;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: auto;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 4rem 10rem;
+      border-top: 1px solid #1a1a1e;
+    }
+
+    .contact-heading {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      max-width: 12ch;
+      margin-bottom: 3rem;
+    }
+
+    .contact-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .contact-link:hover { color: var(--offwhite); }
+
+    .contact-link::before {
+      content: '↗';
+      font-size: 0.75rem;
+      color: var(--accent);
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: #2e2e38;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem;
+      border: none;
+      border-top: 1px solid #1a1a1e;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 2rem; }
+      nav .nav-links { display: none; }
+
+      .hero { padding: 0 2rem 5rem; }
+
+      section { padding: 5rem 2rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      .work-section { padding: 0 2rem 6rem; }
+
+      .featured-project {
+        grid-template-columns: 1fr;
+      }
+
+      .project-visual {
+        height: 320px;
+      }
+
+      .more-projects { grid-template-columns: 1fr; }
+
+      .contact-section { padding: 4rem 2rem 7rem; }
+      .contact-row { flex-direction: column; align-items: flex-start; gap: 2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="#" class="nav-name">Raquel Miranda</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <p class="hero-eyebrow">Instructional Designer · LLM Evaluator · Educational Technologist</p>
+    <h1 class="hero-headline">
+      Learning happens at the edge of what you <em>already know.</em>
+    </h1>
+    <p class="hero-sub">
+      I design learning experiences at the intersection of
+      <strong>epistemology, cognitive science, and technology.</strong>
+    </p>
+    <span class="hero-scroll">Scroll</span>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <p class="section-label reveal">About</p>
+    <div class="about-grid">
+      <div class="reveal">
+        <h2 class="about-heading">
+          Method before <em>medium.</em>
+        </h2>
+      </div>
+      <div class="reveal">
+        <div class="about-body">
+          <p>
+            I'm a psychopedagogue and instructional designer based in Brazil. Nearly a decade evaluating large language models for platforms like Leapforce, Appen, and Teamwork gave me technical intuition that most designers don't have — before AI evaluation became an industry unto itself.
+          </p>
+          <p>
+            My foundation is in psychopedagogy and epistemology. What that means in practice: I ask what it means to know something before I decide how to teach it. I build tools that treat learners as thinking agents.
+          </p>
+          <p style="margin-top:1.75rem; font-family:'Fraunces',Georgia,serif; font-size:1.05rem; font-weight:300; line-height:1.4; color:var(--offwhite); letter-spacing:-0.01em;">
+            The theory comes first. The design follows.
+          </p>
+        </div>
+        <div class="tags">
+          <span class="tag">Instructional Design</span>
+          <span class="tag">LLM Evaluation</span>
+          <span class="tag">Cognitive Science</span>
+          <span class="tag">E-Learning</span>
+          <span class="tag">Epistemology</span>
+          <span class="tag">AI &amp; Education</span>
+          <span class="tag">LXD</span>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── WORK ── -->
+  <section id="work" style="padding-bottom: 2rem;">
+    <p class="section-label reveal">Work</p>
+  </section>
+
+  <div class="work-section">
+    <!-- FEATURED -->
+    <div class="featured-project reveal">
+      <div class="project-info">
+        <div>
+          <p class="project-tag">Interactive Training · AI-Powered</p>
+          <h3 class="project-title">Workplace Conflict<br />Resolution Simulator</h3>
+          <p class="project-desc" style="font-family:'Fraunces',serif; font-style:italic; font-size:1rem; color:var(--offwhite); margin-bottom:1rem; max-width:34ch; line-height:1.3;">
+            No branching trees, no multiple-choice. Just conversation.
+          </p>
+          <p class="project-desc">
+            A role-play simulator for navigating four distinct workplace conflict archetypes. Characters respond to how you communicate — empathy opens them up, blame closes them down. Powered by character-specific AI prompts with consistent psychological profiles.
+          </p>
+          <p class="project-desc" style="margin-top:0.75rem;">
+            Built in Vanilla JS by design: no framework, no dependencies, no build step. Anyone can open the repository and read exactly what is happening.
+          </p>
+        </div>
+
+        <div class="project-meta">
+          <div class="meta-list">
+            <div class="meta-item">
+              <span class="meta-label">Discipline</span>
+              <span class="meta-value">Instructional Design</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Stack</span>
+              <span class="meta-value">Vanilla JS · Claude API</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Year</span>
+              <span class="meta-value">2025–26</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://conflictsim.com" target="_blank" class="btn btn-primary">
+              Live demo ↗
+            </a>
+            <a href="./case-study.pdf" target="_blank" class="btn btn-ghost">
+              Read case study
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-visual">
+        <!-- Simulated preview of the tool -->
+        <div class="sim-preview">
+          <div class="sim-topbar">
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <span class="sim-title">conflict-simulator · netlify.app</span>
+          </div>
+          <div class="sim-body">
+            <p class="sim-scenario">Scenario: Q3 deadline is in two days. Lucas just contradicted your proposal in front of the client.</p>
+            <div class="sim-bubble">
+              <div class="sim-avatar av-l">L</div>
+              <div class="sim-text">I wasn't contradicting you. I was just adding context the client needed to make an informed decision.</div>
+            </div>
+            <div class="sim-bubble">
+              <div class="sim-avatar av-r">R</div>
+              <div class="sim-text">That context was mine to share. We agreed on the approach beforehand.</div>
+            </div>
+            <div class="sim-bubble">
+              <div class="sim-avatar av-l">L</div>
+              <div class="sim-text">Agreed on the approach, yes. But circumstances changed. You weren't reading the room.</div>
+            </div>
+          </div>
+          <div class="sim-input">
+            <div class="sim-input-bar">Your response…</div>
+            <div class="sim-send">
+              <svg fill="none" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELLY -->
+    <div class="featured-project reveal" style="margin-top:1.5rem;">
+      <div class="project-visual" style="order:-1;">
+        <div class="sim-preview">
+          <div class="sim-topbar">
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <span class="sim-title">b2b-sales-trainer · netlify.app</span>
+          </div>
+          <div class="sim-body" style="gap:0.6rem;">
+            <p class="sim-scenario" style="color:#9d8eff55; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Where do you usually struggle?</p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.3rem;">
+              <span style="font-size:0.58rem; border:1px solid #9d8eff55; color:#9d8eff; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Price objections</span>
+              <span style="font-size:0.58rem; border:1px solid #2a2a35; color:#3a3a48; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Discovery</span>
+              <span style="font-size:0.58rem; border:1px solid #9d8eff55; color:#9d8eff; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Bad timing</span>
+              <span style="font-size:0.58rem; border:1px solid #2a2a35; color:#3a3a48; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Reading the buyer</span>
+              <span style="font-size:0.58rem; border:1px solid #2a2a35; color:#3a3a48; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Creating urgency</span>
+              <span style="font-size:0.58rem; border:1px solid #9d8eff55; color:#9d8eff; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Incumbent resistance</span>
+            </div>
+            <div style="margin-top:0.75rem; border-top:1px solid #1a1a22; padding-top:0.75rem;">
+              <p class="sim-scenario" style="color:#9d8eff55; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem;">How do you want to work?</p>
+              <div style="display:flex; gap:0.5rem;">
+                <div style="flex:1; background:#9d8eff22; border:1px solid #9d8eff44; border-radius:2px; padding:0.5rem 0.75rem;">
+                  <p style="font-size:0.62rem; color:#9d8eff; font-family:var(--sans); font-weight:500;">Coach me</p>
+                  <p style="font-size:0.55rem; color:#4a4a5a; font-family:var(--sans); margin-top:0.15rem;">She pushes back. You figure it out.</p>
+                </div>
+                <div style="flex:1; background:#161620; border:1px solid #1e1e28; border-radius:2px; padding:0.5rem 0.75rem;">
+                  <p style="font-size:0.62rem; color:#3a3a48; font-family:var(--sans); font-weight:500;">Guide me</p>
+                  <p style="font-size:0.55rem; color:#2e2e3a; font-family:var(--sans); margin-top:0.15rem;">More scaffolding before asking.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sim-bubble" style="margin-top:0.5rem;">
+              <div class="sim-avatar av-m">S</div>
+              <div class="sim-text">You flagged price objections. Your prospect just said: "Your solution is twice what we pay now." What do you say?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-info">
+        <div>
+          <p class="project-tag">AI Coach · B2B Sales Training</p>
+          <h3 class="project-title">Selly — AI Sales Coach</h3>
+          <p class="project-desc" style="font-family:'Fraunces',serif; font-style:italic; font-size:1rem; color:var(--offwhite); margin-bottom:1rem; max-width:34ch; line-height:1.3;">
+            Deliberate practice. Without the social overhead.
+          </p>
+          <p class="project-desc">
+            A conversational coach for B2B sales reps. Users pick their struggle areas, choose how much scaffolding they want, and Selly runs the session from there — pushing back when answers are vague, quoting the rep's own words in feedback because abstract feedback is easy to ignore.
+          </p>
+          <p class="project-desc" style="margin-top:0.75rem;">
+            The design started with a 34-page knowledge base built before writing a line of the system prompt. The complexity in this project was instructional.
+          </p>
+        </div>
+        <div class="project-meta">
+          <div class="meta-list">
+            <div class="meta-item">
+              <span class="meta-label">Discipline</span>
+              <span class="meta-value">ID · Prompt Engineering</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Stack</span>
+              <span class="meta-value">Vanilla JS · Claude API</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Year</span>
+              <span class="meta-value">2025–26</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://b2b-sales-trainer.netlify.app" target="_blank" class="btn btn-primary">Live demo ↗</a>
+            <a href="./selly-case-study.pdf" target="_blank" class="btn btn-ghost">Read case study</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- ── CONTACT ── -->
+  <div class="contact-section" id="contact">
+    <h2 class="contact-heading reveal">
+      The best instructional design is invisible.<br><em>Let's make something people actually remember.</em>
+    </h2>
+    <div class="contact-row">
+      <div class="contact-links reveal">
+        <a href="mailto:raquelgmiranda@gmail.com" class="contact-link">
+          raquelgmiranda@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/raquelgmiranda" target="_blank" class="contact-link">
+          LinkedIn
+        </a>
+      </div>
+      <p class="footer-note reveal">Open to contract work in instructional design, LLM evaluation &amp; e-learning development · Remote</p>
+    </div>
+  </div>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
