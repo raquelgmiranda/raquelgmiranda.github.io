@@ -1,0 +1,60 @@
+# Raquel Miranda
+
+Instructional Designer · LLM Evaluator · Educational Technologist
+
+Website: https://raquel-miranda.netlify.app
+Email: raquelgmiranda@gmail.com
+LinkedIn: https://linkedin.com/in/raquelgmiranda
+
+## About
+
+I'm a psychopedagogue and instructional designer based in Brazil. Nearly a decade evaluating large language models for platforms like Leapforce, Appen, and Teamwork gave me technical intuition that most designers don't have, before AI evaluation became an industry unto itself.
+
+My foundation is in psychopedagogy and epistemology. What that means in practice: I ask what it means to know something before I decide how to teach it. I build tools that treat learners as thinking agents.
+
+The theory comes first. The design follows.
+
+Skills: Instructional Design, LLM Evaluation, Cognitive Science, E-Learning, Epistemology, AI & Education, LXD, Python, Vanilla JS, Claude API, n8n, Figma, Prompt Engineering, ADDIE, UDL, NVC
+
+## Projects
+
+### Conflict Resolution Simulator
+URL: https://conflictsim.com
+Case study: https://raquel-miranda.netlify.app/case-study.pdf
+Type: Interactive Training · AI-Powered
+Stack: Vanilla JS · Claude API
+Year: 2025–26
+
+A role-play simulator for navigating four distinct workplace conflict archetypes. Characters respond to how you communicate — empathy opens them up, blame closes them down. Powered by character-specific AI prompts with consistent psychological profiles. Built in Vanilla JS by design: no framework, no dependencies, no build step.
+
+Four scenarios: Lucas (missed deadline), Rita (idea theft), Daniel (scope creep), Marina (angry client). Each runs in Normal and Challenge mode. After each session, a second AI model analyzes the conversation and delivers structured feedback across four skill dimensions with a radar chart.
+
+### Selly — AI Sales Coach
+URL: https://b2b-sales-trainer.netlify.app
+Case study: https://raquel-miranda.netlify.app/selly-case-study.pdf
+Type: AI Coach · B2B Sales Training
+Stack: Vanilla JS · Claude API · Netlify Functions
+Year: 2025–26
+
+A conversational coach for B2B sales reps. Users pick their struggle areas, choose how much scaffolding they want, and Selly runs the session from there — pushing back when answers are vague, quoting the rep's own words in feedback because abstract feedback is easy to ignore.
+
+The design started with a 34-page knowledge base built before writing a line of the system prompt. Five topic areas: Objection Handling, Discovery, Reading the Buyer, Timing and Qualification, Value Selling. Two modes: Coach (minimal scaffolding) and Guide (more structure). The complexity in this project was instructional.
+
+## Experience
+
+- AI Linguistic Annotator & LLM Trainer, OneForma (Jul 2021 – Present)
+- Instructional Designer, Freelance (Oct 2023 – Present)
+- Copywriter, Ápice Comunica (May 2025 – May 2026)
+- LLM Quality Evaluator, Teamwork.com (Feb 2020 – Dec 2021)
+- QA for AI Training, Appen (Dec 2017 – Dec 2019)
+- AI Quality Analyst, Leapforce Inc. (Feb 2014 – Oct 2015)
+
+## Education
+
+- Specialization: Generative AI for Educators, IBM / Coursera (2025)
+- B.S. Psychopedagogy, Cruzeiro do Sul Virtual (2022–2024)
+- e-Learning Ecologies, University of Illinois Urbana-Champaign (2025)
+
+## Availability
+
+Open to contract work in instructional design, LLM evaluation, and e-learning development. Remote.
