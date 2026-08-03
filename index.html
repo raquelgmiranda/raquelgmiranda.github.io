@@ -370,7 +370,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 400px;
+      min-height: 520px;
     }
 
     /* Simulated UI inside the visual pane */
@@ -785,15 +785,81 @@
         </div>
       </div>
 
-      <div class="project-visual" style="padding:0; overflow:hidden;">
-        <img src="./conflictsim.png" alt="Conflict Resolution Simulator preview" style="width:100%; height:100%; object-fit:contain; object-position:center center; display:block;" />
+      <div class="project-visual">
+        <div class="sim-preview">
+          <div class="sim-topbar">
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <span class="sim-title">conflictsim.com</span>
+          </div>
+          <div class="sim-body">
+            <p class="sim-scenario">Scenario: Q3 deadline is in two days. Lucas just contradicted your proposal in front of the client.</p>
+            <div class="sim-bubble">
+              <div class="sim-avatar av-l">L</div>
+              <div class="sim-text">I wasn't contradicting you. I was just adding context the client needed to make an informed decision.</div>
+            </div>
+            <div class="sim-bubble">
+              <div class="sim-avatar av-r">R</div>
+              <div class="sim-text">That context was mine to share. We agreed on the approach beforehand.</div>
+            </div>
+            <div class="sim-bubble">
+              <div class="sim-avatar av-l">L</div>
+              <div class="sim-text">Agreed on the approach, yes. But circumstances changed. You weren't reading the room.</div>
+            </div>
+          </div>
+          <div class="sim-input">
+            <div class="sim-input-bar">Your response…</div>
+            <div class="sim-send">
+              <svg fill="none" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- SELLY -->
     <div class="featured-project reveal" style="margin-top:1.5rem;">
-      <div class="project-visual" style="order:-1; padding:0; overflow:hidden;">
-        <img src="./selly-preview.png" alt="Selly AI Sales Coach preview" style="width:100%; height:100%; object-fit:contain; object-position:center center; display:block;" />
+      <div class="project-visual" style="order:-1;">
+        <div class="sim-preview">
+          <div class="sim-topbar">
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <span class="sim-title">b2b-sales-trainer · netlify.app</span>
+          </div>
+          <div class="sim-body" style="gap:0.6rem;">
+            <p class="sim-scenario" style="color:#9d8eff55; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Where do you usually struggle?</p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.3rem;">
+              <span style="font-size:0.58rem; border:1px solid #9d8eff55; color:#9d8eff; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Price objections</span>
+              <span style="font-size:0.58rem; border:1px solid #2a2a35; color:#3a3a48; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Discovery</span>
+              <span style="font-size:0.58rem; border:1px solid #9d8eff55; color:#9d8eff; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Bad timing</span>
+              <span style="font-size:0.58rem; border:1px solid #2a2a35; color:#3a3a48; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Reading the buyer</span>
+              <span style="font-size:0.58rem; border:1px solid #2a2a35; color:#3a3a48; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Creating urgency</span>
+              <span style="font-size:0.58rem; border:1px solid #9d8eff55; color:#9d8eff; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Incumbent resistance</span>
+            </div>
+            <div style="margin-top:0.75rem; border-top:1px solid #1a1a22; padding-top:0.75rem;">
+              <p class="sim-scenario" style="color:#9d8eff55; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem;">How do you want to work?</p>
+              <div style="display:flex; gap:0.5rem;">
+                <div style="flex:1; background:#9d8eff22; border:1px solid #9d8eff44; border-radius:2px; padding:0.5rem 0.75rem;">
+                  <p style="font-size:0.62rem; color:#9d8eff; font-family:var(--sans); font-weight:500;">Coach me</p>
+                  <p style="font-size:0.55rem; color:#4a4a5a; font-family:var(--sans); margin-top:0.15rem;">She pushes back. You figure it out.</p>
+                </div>
+                <div style="flex:1; background:#161620; border:1px solid #1e1e28; border-radius:2px; padding:0.5rem 0.75rem;">
+                  <p style="font-size:0.62rem; color:#3a3a48; font-family:var(--sans); font-weight:500;">Guide me</p>
+                  <p style="font-size:0.55rem; color:#2e2e3a; font-family:var(--sans); margin-top:0.15rem;">More scaffolding before asking.</p>
+                </div>
+              </div>
+            </div>
+            <div class="sim-bubble" style="margin-top:0.5rem;">
+              <div class="sim-avatar av-m">S</div>
+              <div class="sim-text">You flagged price objections. Your prospect just said: "Your solution is twice what we pay now." What do you say?</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="project-info">
