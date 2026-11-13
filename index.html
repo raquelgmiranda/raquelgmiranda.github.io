@@ -292,6 +292,28 @@
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
     }
+
+    /* projetos com imagem */
+    .project { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) !important; align-items: center !important; }
+    .project.flip .shot { order: 2; }
+    .project + .project { border-top: 0 !important; }
+    .shot { margin: 0; border-radius: 8px; overflow: hidden; border: 1px solid #ffffff1c; box-shadow: 0 30px 70px rgba(0,0,0,0.55); transition: transform 0.35s ease; }
+    .shot:hover { transform: translateY(-4px) scale(1.01); }
+    .shot img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+    .pinfo h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1; letter-spacing: -0.03em; }
+    .pinfo .pitch { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.25; margin-top: 0.9rem; color: var(--pearl); }
+    .pinfo .copy { margin-top: 1rem; color: var(--soft); font-size: 0.95rem; max-width: 34rem; }
+    details.mini { margin-top: 1.5rem; }
+    details.mini summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--teal); }
+    details.mini summary::-webkit-details-marker { display: none; }
+    details.mini summary::before { content: '+'; font-family: var(--serif); font-size: 1.2rem; line-height: 1; transition: transform 0.2s; }
+    details.mini[open] summary::before { transform: rotate(45deg); }
+    details.mini .demo { position: static; margin-top: 1rem; max-width: 30rem; }
+    @media (max-width: 900px) { .project { grid-template-columns: 1fr !important; } .project.flip .shot { order: 0; } }
+    .hero h1 sup.fn { font-size: 1rem; vertical-align: top; position: relative; top: 0.4em; }
+    .about { grid-template-columns: 1fr !important; }
+    .about .text p { max-width: 48rem; }
+    .about h2.sec { max-width: 24ch; }
   </style>
 </head>
 
@@ -315,9 +337,9 @@
   <section class="page hero">
     <div class="hero-grid">
       <div>
-        <h1>Learning needs <span class="fword" id="fword">friction.</span></h1>
+        <h1>Learning needs <span class="fword" id="fword">friction.</span><sup class="fn"><a href="#n1">1</a></sup></h1>
         <p class="counter">Remembering takes effort. I design the effort.</p>
-        <p class="lede">I'm Raquel Miranda, instructional designer and LLM evaluator. I design learning experiences at the intersection of epistemology, cognitive science, and technology.<sup class="fn"><a href="#n1">1</a></sup></p>
+        <p class="lede">I'm Raquel Miranda, instructional designer and LLM evaluator. I design learning experiences at the intersection of epistemology, cognitive science, and technology.</p>
         <div class="cta">
           <a class="btn main" href="mailto:raquelgmiranda@gmail.com?subject=A%20learning%20problem">Send me your problem</a>
           <a class="btn" href="#work">See the work</a>
@@ -325,7 +347,7 @@
       </div>
 
       <div class="friction" id="friction">
-        <div class="top"><b>Drag to add friction</b><span>Watch the headline</span></div>
+        <div class="top"><b>Drag to add friction</b></div>
         <div class="slider">
           <input type="range" min="0" max="100" value="12" id="fr" aria-label="Amount of friction in training" />
           <div class="ends"><span>Smooth</span><span>Too hard</span></div>
@@ -346,7 +368,6 @@
 
   <section class="block" id="build">
     <div class="page">
-      <p class="eyebrow">What I can build for you</p>
       <h2 class="sec">Three ways to put <em>the right difficulty</em> back in.</h2>
 
       <div class="offers">
@@ -363,7 +384,7 @@
         <article class="offer">
           <h3>AI tutor evaluation</h3>
           <p>If your product teaches with an LLM, I'll tell you whether it teaches. Rubrics, annotated evaluations and red-team sessions, from someone who has been judging model output since 2014.</p>
-          <p class="why"><b>Grounded in</b> a rubric where correctness is the floor and the teaching move, fit and calibration are scored too. <a href="#rubric" style="color:var(--soft)">Sample below</a>.</p>
+          <p class="why"><b>Grounded in</b> a rubric where correctness is the floor and the teaching move, fit and calibration are scored too. <a href="#rubric" style="color:var(--soft)">See it below</a>.</p>
         </article>
       </div>
     </div>
@@ -374,59 +395,55 @@
       <h2 class="sec">Work</h2>
 
       <article class="project">
-        <div>
+        <figure class="shot"><img src="./conflictsim.png" alt="ConflictSim: a message bubble reading 'Can we talk?' and the line 'Every conversation changes the outcome.'" /></figure>
+        <div class="pinfo">
           <p class="kind">AI role-play · workplace conflict</p>
           <h3>ConflictSim</h3>
-          <dl class="pfr">
-            <div><dt>The problem</dt><dd>Conflict training usually ends in a framework people can recite and can't use when the person across the table is upset.</dd></div>
-            <div class="fr"><dt>The friction</dt><dd>No list of options to hide behind. You type what you'd say and the character reacts to it: empathy opens them up, blame shuts them down. Afterwards a second model reads the transcript and scores the conversation you had.</dd></div>
-            <div><dt>The research</dt><dd>Nonviolent Communication shapes the character logic and the feedback dimensions.<sup class="fn"><a href="#n5">5</a></sup></dd></div>
-          </dl>
+          <p class="pitch">No branching trees, no multiple choice. You talk, and the character reacts.</p>
+          <p class="copy">Role-play for four workplace conflicts. Empathy opens the characters up, blame shuts them down, and a second model reads the transcript and scores the conversation you had. Grounded in Nonviolent Communication.<sup class="fn"><a href="#n5">5</a></sup></p>
           <div class="links">
             <a class="btn main" href="https://conflictsim.com" target="_blank" rel="noopener">Try it live ↗</a>
             <a class="btn" href="./case-study.pdf" target="_blank" rel="noopener">Case study</a>
-            <small>Vanilla JS, Claude API · 2025–26</small>
           </div>
-        </div>
-
-        <div class="demo" id="demo-conflict">
-          <p class="demo-cap">The mechanic, in miniature. Pick a line.</p>
-          <div class="demo-head">
-            <div class="av">L</div>
-            <div>Lucas<small>Missed deadline</small></div>
-            <div class="mood"><span class="mood-label">Guarded</span><div class="track"><div class="fill"></div></div></div>
-          </div>
-          <div class="thread" aria-live="polite"></div>
-          <div class="choices"></div>
-          <p class="demo-note">Illustration, not a real transcript. <button type="button" class="reset">Reset</button></p>
+          <details class="mini">
+            <summary>Try the mechanic here</summary>
+            <div class="demo" id="demo-conflict">
+              <div class="demo-head">
+                <div class="av">L</div>
+                <div>Lucas<small>Missed deadline</small></div>
+                <div class="mood"><span class="mood-label">Guarded</span><div class="track"><div class="fill"></div></div></div>
+              </div>
+              <div class="thread" aria-live="polite"></div>
+              <div class="choices"></div>
+              <p class="demo-note">Illustration, not a real transcript. <button type="button" class="reset">Reset</button></p>
+            </div>
+          </details>
         </div>
       </article>
 
-      <article class="project">
-        <div>
+      <article class="project flip">
+        <figure class="shot"><img src="./selly-preview.png" alt="Selly, AI sales coach: a violet ink portrait inside a glowing circle and the line 'Practice the hard conversations before they cost you a deal.'" /></figure>
+        <div class="pinfo">
           <p class="kind">AI coach · B2B sales training</p>
           <h3>Selly, AI Sales Coach</h3>
-          <dl class="pfr">
-            <div><dt>The problem</dt><dd>Reps learn frameworks, pass quizzes and still freeze on live calls. Roleplay with a manager is rare, and the social stakes change what people are willing to try.</dd></div>
-            <div class="fr"><dt>The friction</dt><dd>Selly pushes back when an answer is vague and quotes the rep's own words in feedback. In Coach mode the scaffolding is minimal; you work for the answer.</dd></div>
-            <div><dt>The research</dt><dd>Deliberate practice, and a 34-page knowledge base built from primary research before the first line of the prompt.<sup class="fn"><a href="#n3">3</a></sup></dd></div>
-          </dl>
+          <p class="pitch">Deliberate practice, without the social overhead.</p>
+          <p class="copy">A coach for B2B sales reps that pushes back on vague answers and quotes your own words in the feedback. Built on a 34-page knowledge base written before the first line of the prompt.<sup class="fn"><a href="#n3">3</a></sup></p>
           <div class="links">
             <a class="btn main" href="https://b2b-sales-trainer.netlify.app" target="_blank" rel="noopener">Try it live ↗</a>
             <a class="btn" href="./selly-case-study.pdf" target="_blank" rel="noopener">Case study</a>
-            <small>Vanilla JS, Claude API · 2025–26</small>
           </div>
-        </div>
-
-        <div class="demo" id="demo-selly">
-          <p class="demo-cap">How Selly answers a vague reply. Pick a line.</p>
-          <div class="demo-head">
-            <div class="av">S</div>
-            <div>Selly<small>Objection handling</small></div>
-          </div>
-          <div class="thread" aria-live="polite"></div>
-          <div class="choices"></div>
-          <p class="demo-note">Illustration, not a real session. <button type="button" class="reset">Reset</button></p>
+          <details class="mini">
+            <summary>Try the mechanic here</summary>
+            <div class="demo" id="demo-selly">
+              <div class="demo-head">
+                <div class="av">S</div>
+                <div>Selly<small>Objection handling</small></div>
+              </div>
+              <div class="thread" aria-live="polite"></div>
+              <div class="choices"></div>
+              <p class="demo-note">Illustration, not a real session. <button type="button" class="reset">Reset</button></p>
+            </div>
+          </details>
         </div>
       </article>
     </div>
@@ -435,7 +452,7 @@
   <section class="block" id="rubric">
     <div class="page rubric">
       <div class="text">
-        <p class="eyebrow">LLM evaluation, a sample</p>
+        <p class="eyebrow">LLM evaluation</p>
         <h2 class="sec">How I judge <em>an AI tutor.</em></h2>
         <p>Five criteria scored 1 to 4, plus a safety gate. In the sample, a nursing student asks about drug half-life. The answer is correct, friendly and well organized, the kind most reviewers would pass, and it still fails: it does the learner's thinking, states a clinical convention as fact, then slides into dosing advice.</p>
         <p class="quote">"This also tells you that you can safely give the next dose after 30 hours."<br />A tutor has no business setting a dose.</p>
@@ -457,10 +474,9 @@
 
   <section class="block" id="how">
     <div class="page">
-      <p class="eyebrow">Approach</p>
       <h2 class="sec">How a project <em>runs with me.</em></h2>
       <div class="steps">
-        <div class="step"><h3>Find the gap</h3><p>Needs analysis. <a href="./needs-analysis-selly.pdf" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">See a sample ↗</a></p></div>
+        <div class="step"><h3>Find the gap</h3><p>Needs analysis. <a href="./needs-analysis-selly.pdf" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">Example ↗</a></p></div>
         <div class="step"><h3>Choose the friction</h3><p>Design.</p></div>
         <div class="step"><h3>Build it with you</h3><p>Development in rounds, talking often, until it fits your business.</p></div>
         <div class="step"><h3>Evaluate</h3><p>Measure, then adjust if needed.</p></div>
@@ -470,9 +486,7 @@
 
   <section class="block" id="about">
     <div class="page about">
-      <img src="./raquel.jpg" alt="Raquel Miranda" onerror="this.remove()" />
       <div class="text">
-        <p class="eyebrow">About</p>
         <h2 class="sec">Instructional designer, LLM evaluator, <em>cognitive scientist.</em></h2>
         <p>I went for psychopedagogy because psychology was too into the couch and pedagogy too into the institution; I wanted the part where cognition and behavior meet, which turns out to be a tiny corner of academia.</p>
         <p>I've been reading AI output and explaining why it's wrong since 2014, long before the field had a name. That habit, judging what a system produced and writing down exactly why, is the one I bring to every course I design.</p>
