@@ -3,936 +3,637 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raquel Miranda — Instructional Designer</title>
+  <title>Raquel Miranda · Instructional Designer and LLM Evaluator</title>
+  <meta name="description" content="Learning needs friction. Raquel Miranda designs training with the right kind of difficulty: AI practice simulations, evidence-based courses and AI tutor evaluation." />
+  <meta name="theme-color" content="#0c0c0d" />
+  <link rel="canonical" href="https://raquelgmiranda.github.io/" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Raquel Miranda" />
+  <meta property="og:title" content="Raquel Miranda · Learning needs friction" />
+  <meta property="og:description" content="AI practice simulations, evidence-based courses and AI tutor evaluation, from an instructional designer who has judged AI output since 2014." />
+  <meta property="og:url" content="https://raquelgmiranda.github.io/" />
+  <meta property="og:image" content="https://raquelgmiranda.github.io/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Raquel Miranda",
+    "jobTitle": "Instructional Designer and LLM Evaluator",
+    "url": "https://raquelgmiranda.github.io/",
+    "sameAs": ["https://linkedin.com/in/raquelgmiranda"],
+    "knowsAbout": ["Instructional design", "LLM evaluation", "Cognitive science", "E-learning", "Epistemology", "Educational technology"]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #0c0c0d;
+      --ink: #0c0c0d;
       --surface: #131315;
-      --offwhite: #edeae4;
-      --muted:   #9EA4B5;
-      --accent:  #9d8eff;
-      --accent-dim: #6b5dcf22;
+      --surface-2: #1b1b20;
+      --line: #2a2a30;
+      --pearl: #e9e4db;
+      --soft: #bcc0cd;
+      --dim: #8d92a4;
+      --teal: #63C5C0;
       --serif: 'Fraunces', Georgia, serif;
       --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pearl-sheen: linear-gradient(135deg, #f3eee5 0%, #e3e7ec 50%, #d1e9e6 100%);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; scroll-padding-top: 4.5rem; }
+    ::selection { background: var(--teal); color: var(--ink); }
 
     body {
-      background: var(--black);
-      color: var(--offwhite);
+      background: var(--ink);
+      color: var(--pearl);
       font-family: var(--sans);
       font-weight: 300;
-      font-size: 1rem;
       line-height: 1.7;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
-    /* ── Grain overlay ── */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0; z-index: 70;
       pointer-events: none;
-      z-index: 9999;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.028;
-      mix-blend-mode: overlay;
+      opacity: 0.09;
+      mix-blend-mode: screen;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 4rem;
-      background: linear-gradient(to bottom, var(--black) 40%, transparent);
-    }
+    a { color: inherit; }
+    button, input { font-family: inherit; }
 
-    .nav-name {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-      color: var(--offwhite);
-      text-decoration: none;
-    }
+    .page { max-width: 1160px; margin: 0 auto; padding-left: clamp(1.25rem, 4vw, 3rem); padding-right: clamp(1.25rem, 4vw, 3rem); }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--offwhite); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 4rem 6rem;
-      position: relative;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.2s forwards;
-    }
-
-    .hero-headline {
-      font-family: var(--serif);
-      font-size: clamp(3.2rem, 7vw, 7rem);
-      font-weight: 300;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      max-width: 14ch;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.4s forwards;
-    }
-
-    .hero-headline em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-sub {
-      margin-top: 2.5rem;
-      max-width: 42ch;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp 0.9s ease 0.6s forwards;
-    }
-
-    .hero-sub strong {
-      color: var(--offwhite);
-      font-weight: 400;
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      right: 4rem;
-      writing-mode: vertical-rl;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 1s forwards;
-    }
-
-    .hero-scroll::before {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 48px;
-      background: linear-gradient(to bottom, transparent, var(--muted));
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      padding: 8rem 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 3rem;
-    }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
-    }
-
-    .about-heading {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 300;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-    }
-
-    .about-heading em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .about-body {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.85;
-    }
-
-    .about-body p + p { margin-top: 1.25rem; }
-
-    .about-body strong {
-      color: var(--offwhite);
-      font-weight: 400;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 2.5rem;
-    }
-
-    .tag {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid #2a2a30;
-      color: var(--muted);
-      padding: 0.35rem 0.9rem;
-      border-radius: 2rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .tag:hover {
-      border-color: var(--accent);
-      color: var(--offwhite);
-    }
-
-    /* ── WORK ── */
-    .work-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 4rem 10rem;
-    }
-
-    .featured-project {
-      background: var(--surface);
-      border: 1px solid #1e1e22;
-      border-radius: 4px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
-      transition: border-color 0.3s;
-    }
-
-    .featured-project:hover {
-      border-color: #3a3a44;
-    }
-
-    .project-info {
-      padding: 4rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .project-tag {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .project-title {
-      font-family: var(--serif);
-      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-top: 1rem;
-    }
-
-    .project-desc {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.8;
-      margin-top: 1.25rem;
-      max-width: 38ch;
-    }
-
-    .project-desc strong {
-      color: var(--offwhite);
-      font-weight: 400;
-    }
-
-    .project-meta {
-      margin-top: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .meta-list {
-      display: flex;
-      gap: 2.5rem;
-    }
-
-    .meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .meta-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .meta-value {
-      font-size: 0.85rem;
-      color: var(--offwhite);
-    }
-
-    .project-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    sup.fn { font-family: var(--sans); font-size: 0.6em; font-weight: 400; margin-left: 0.08em; vertical-align: super; line-height: 0; }
+    sup.fn a { color: var(--teal); text-decoration: none; }
+    sup.fn a:hover { text-decoration: underline; }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.5rem;
-      font-family: var(--sans);
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: all 0.2s;
-      cursor: pointer;
+      display: inline-block; font-size: 0.92rem; text-decoration: none;
+      padding: 0.7rem 1.35rem; border-radius: 99px;
+      border: 1px solid #44444d; color: var(--pearl); background: transparent; cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, transform 0.15s;
+    }
+    .btn:hover { border-color: var(--pearl); transform: translateY(-1px); }
+    .btn.main { background: var(--pearl); color: var(--ink); border-color: var(--pearl); font-weight: 500; }
+    .btn.main:hover { background: #fff; }
+    .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+    .eyebrow { font-size: 0.85rem; color: var(--dim); margin-bottom: 0.9rem; }
+
+    h2.sec {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.04; letter-spacing: -0.025em;
+      max-width: 18ch;
+    }
+    h2.sec em { font-style: italic; font-weight: 300; color: var(--soft); }
+
+    section.block { padding: clamp(4rem, 9vw, 7rem) 0; border-top: 1px solid var(--line); }
+
+    /* ── CABEÇALHO ── */
+    .bar { position: sticky; top: 0; z-index: 40; background: var(--ink); border-bottom: 1px solid var(--line); }
+    .bar .page { display: flex; align-items: center; gap: 1.4rem; padding-top: 0.85rem; padding-bottom: 0.85rem; }
+    .brand { font-family: var(--serif); font-size: 1.15rem; text-decoration: none; margin-right: auto; }
+    .nav { display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 1.8rem); font-size: 0.9rem; }
+    .nav a { color: var(--soft); text-decoration: none; transition: color 0.15s; }
+    .nav a:hover { color: var(--pearl); }
+    .nav .cv { color: var(--ink); background: var(--pearl); padding: 0.45rem 1rem; border-radius: 99px; font-weight: 500; }
+    .nav .cv:hover { background: #fff; color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero { padding-top: clamp(3rem, 9vh, 6rem); padding-bottom: clamp(3.5rem, 9vh, 6rem); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+
+    .hero h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(3.2rem, 8vw, 7.4rem);
+      line-height: 0.92; letter-spacing: -0.04em;
+      font-variation-settings: 'opsz' 144;
     }
 
-    .btn-primary {
-      background: var(--accent);
-      color: var(--black);
-      font-weight: 500;
+    .hero .counter {
+      font-family: var(--serif); font-style: italic; font-weight: 300;
+      font-size: clamp(1.6rem, 3.3vw, 2.8rem); line-height: 1.1; letter-spacing: -0.015em;
+      color: var(--pearl); margin-top: 1.2rem; max-width: 19ch;
     }
+    .fword { display: inline-block; white-space: nowrap; }
+    .fword span { display: inline-block; transition: transform 0.2s ease; }
+    .fword, .fword span { font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0; }
 
-    .btn-primary:hover {
-      background: #b8a9ff;
+    .hero .lede { margin-top: 2rem; max-width: 34rem; color: var(--soft); font-size: 1.02rem; }
+    .hero .cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+
+    /* widget da fricção */
+    .friction {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 1.2rem;
+      padding: 1.5rem 1.5rem 1.3rem;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
     }
+    .friction .top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .friction .top b { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; letter-spacing: -0.01em; }
+    .friction .top span { font-size: 0.78rem; color: var(--dim); }
 
-    .btn-ghost {
-      background: transparent;
-      color: var(--offwhite);
-      border: 1px solid #2a2a30;
+    .slider { margin: 1.4rem 0 0.4rem; }
+    .slider input { width: 100%; accent-color: var(--teal); cursor: grab; height: 1.4rem; }
+    .slider .ends { display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--dim); }
+
+    .meter { margin-top: 1.2rem; }
+    .meter + .meter { margin-top: 1rem; }
+    .meter .lab { display: flex; justify-content: space-between; font-size: 0.85rem; }
+    .meter .lab small { color: var(--dim); font-size: 0.78rem; }
+    .meter .lab output { font-family: var(--serif); font-size: 1.05rem; }
+    .meter .track { height: 10px; border-radius: 10px; background: var(--surface-2); margin-top: 0.45rem; overflow: hidden; }
+    .meter .fill { height: 100%; border-radius: 10px; transition: width 0.25s ease; }
+    .meter.now .fill { background: #8d92a4; }
+    .meter.later .fill { background: var(--teal); }
+
+    .verdict {
+      margin-top: 1.3rem; min-height: 3.2em;
+      font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1.2rem; line-height: 1.3;
     }
+    .friction .note { margin-top: 0.8rem; font-size: 0.74rem; color: var(--dim); }
 
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+    /* faixa de prova */
+    .proof { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .proof .page { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .proof .it { padding: 1.4rem 1.2rem 1.4rem 0; }
+    .proof .it + .it { padding-left: 1.4rem; border-left: 1px solid var(--line); }
+    .proof b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.2rem; line-height: 1.2; letter-spacing: -0.01em; }
+    .proof small { color: var(--dim); font-size: 0.82rem; }
+
+    /* ── SERVIÇOS ── */
+    .offers { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem); }
+    .offer { padding-top: 1.4rem; border-top: 1px solid var(--pearl); }
+    .offer h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; line-height: 1.1; letter-spacing: -0.015em; }
+    .offer p { margin-top: 0.9rem; color: var(--soft); font-size: 0.95rem; }
+    .offer .why { margin-top: 1.2rem; padding-top: 0.9rem; border-top: 1px dashed var(--line); font-size: 0.85rem; color: var(--dim); }
+    .offer .why b { color: var(--pearl); font-weight: 400; }
+
+    /* ── PROJETOS ── */
+    .project { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; margin-top: clamp(3rem, 6vw, 4.5rem); }
+    .project + .project { padding-top: clamp(3rem, 6vw, 4.5rem); border-top: 1px solid var(--line); }
+    .project h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 3.4vw, 2.8rem); line-height: 1.04; letter-spacing: -0.025em; }
+    .project .kind { font-size: 0.85rem; color: var(--dim); margin-bottom: 0.7rem; }
+
+    .pfr { margin-top: 1.8rem; }
+    .pfr > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+    .pfr dt { font-family: var(--serif); font-style: italic; color: var(--soft); }
+    .pfr dd { font-size: 0.95rem; color: var(--soft); }
+    .pfr .fr dt { color: var(--teal); }
+    .pfr .fr dd { color: var(--pearl); }
+
+    .links { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; }
+    .links small { color: var(--dim); font-size: 0.8rem; margin-left: 0.3rem; }
+
+    /* demos */
+    .demo { background: var(--surface); border: 1px solid var(--line); border-radius: 1.3rem; padding: 1.1rem 1.1rem 1.2rem; box-shadow: 0 18px 40px rgba(0,0,0,0.4); position: sticky; top: 5.5rem; }
+    .demo-cap { font-size: 0.78rem; color: var(--dim); padding: 0 0.3rem 0.8rem; }
+    .demo-head { display: flex; align-items: center; gap: 0.7rem; padding: 0.2rem 0.3rem 0.9rem; border-bottom: 1px solid var(--line); font-size: 0.85rem; }
+    .av { width: 2rem; height: 2rem; border-radius: 50%; background: var(--pearl-sheen); color: var(--ink); font-family: var(--serif); display: grid; place-items: center; font-size: 0.85rem; flex-shrink: 0; }
+    .demo-head small { display: block; color: var(--dim); font-size: 0.76rem; line-height: 1.3; }
+    .mood { margin-left: auto; text-align: right; font-size: 0.74rem; color: var(--dim); min-width: 7rem; }
+    .mood .track { height: 4px; background: var(--line); border-radius: 4px; margin-top: 0.35rem; overflow: hidden; }
+    .mood .fill { height: 100%; width: 40%; background: var(--dim); border-radius: 4px; transition: width 0.7s ease, background 0.4s; }
+    .thread { padding: 1rem 0.2rem 0.4rem; display: flex; flex-direction: column; gap: 0.6rem; min-height: 9rem; }
+    .d { max-width: 88%; font-size: 0.88rem; line-height: 1.55; padding: 0.65rem 0.95rem; border-radius: 1rem 1rem 1rem 0.3rem; background: var(--surface-2); animation: pop 0.35s ease both; }
+    .d.me { align-self: flex-end; border-radius: 1rem 1rem 0.3rem 1rem; background: var(--pearl-sheen); color: var(--ink); }
+    @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(0.98); } }
+    .d.typing { display: flex; gap: 5px; padding: 0.85rem 0.95rem; }
+    .d.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--dim); animation: bounce 1s infinite; }
+    .d.typing i:nth-child(2) { animation-delay: 0.15s; }
+    .d.typing i:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes bounce { 40% { transform: translateY(-4px); background: var(--pearl); } }
+    .choices { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.8rem; }
+    .choice { font-weight: 300; font-size: 0.84rem; line-height: 1.45; text-align: left; color: var(--pearl); background: transparent; border: 1px solid #3a3a42; border-radius: 0.9rem; padding: 0.6rem 0.9rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+    .choice:hover { border-color: var(--teal); background: #14181b; }
+    .choice[disabled] { opacity: 0.4; cursor: default; }
+    .demo-note { margin-top: 0.9rem; font-size: 0.74rem; color: var(--dim); padding: 0 0.3rem; }
+    .demo-note button { font: inherit; color: var(--soft); background: none; border: 0; text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; }
+
+    /* ── RUBRICA ── */
+    .rubric { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+    .rubric .text p { margin-top: 1.2rem; color: var(--soft); max-width: 32rem; }
+    .rubric .quote { margin-top: 1.4rem; padding-left: 1rem; border-left: 2px solid var(--line); font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1.1rem; color: var(--pearl); }
+
+    .card { background: var(--pearl); color: var(--ink); border-radius: 6px; padding: 1.6rem 1.7rem; transform: rotate(1deg); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+    .card .h { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #c9c3b8; padding-bottom: 0.7rem; }
+    .card .h b { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; }
+    .card .h span { font-size: 0.78rem; color: #5b5f6c; }
+    .card .r { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px dashed #cfc9be; font-size: 0.92rem; }
+    .card .r small { display: block; color: #5b5f6c; font-size: 0.78rem; line-height: 1.35; }
+    .dots { display: flex; gap: 5px; }
+    .dots i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #1c2035; }
+    .dots i.on { background: #1c2035; }
+    .card .t { display: flex; justify-content: space-between; align-items: baseline; padding-top: 0.9rem; }
+    .card .t b { font-family: var(--serif); font-weight: 500; font-size: 1.6rem; }
+    .stampx { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: #8a2f3b; border: 1.5px solid #8a2f3b; padding: 0.1rem 0.7rem; border-radius: 4px; transform: rotate(-4deg); display: inline-block; }
+
+    /* ── PROCESSO ── */
+    .steps { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1rem, 2.5vw, 2rem); counter-reset: s; }
+    .step { position: relative; padding-top: 2.4rem; }
+    .step::before { counter-increment: s; content: counter(s); position: absolute; top: 0; left: 0; font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--teal); }
+    .step::after { content: ''; position: absolute; top: 0.75rem; left: 1.6rem; right: -1rem; height: 1px; background: var(--line); }
+    .step:last-child::after { display: none; }
+    .step h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.15; }
+    .step p { margin-top: 0.6rem; color: var(--soft); font-size: 0.92rem; }
+
+    /* ── SOBRE ── */
+    .about { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+    .about img { width: 100%; max-width: 20rem; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 6px; }
+    .about .text p { margin-top: 1.1rem; color: var(--soft); max-width: 40rem; }
+    .cos { margin-top: 1.8rem !important; font-family: var(--serif); font-size: 1.2rem; color: var(--pearl) !important; }
+    .tl { margin-top: 1.8rem; display: grid; grid-template-columns: auto 1fr; gap: 0.45rem 1.4rem; font-size: 0.9rem; }
+    .tl time { font-family: var(--serif); color: var(--dim); }
+    .tl span { color: var(--soft); }
+
+    /* ── FECHO ── */
+    .close { padding: clamp(5rem, 12vw, 9rem) 0 clamp(3rem, 6vw, 4rem); border-top: 1px solid var(--line); }
+    .close .motto {
+      font-family: var(--serif); font-style: italic; font-weight: 300;
+      font-size: clamp(2.2rem, 5.6vw, 4.8rem); line-height: 1.02; letter-spacing: -0.03em; max-width: 17ch;
     }
+    .close .sig { margin-top: 1.2rem; color: var(--dim); font-size: 0.9rem; }
+    .close .ask { margin-top: 3rem; font-family: var(--serif); font-size: 1.5rem; }
+    .close .links { margin-top: 1.2rem; }
+    .close .avail { margin-top: 1rem; font-size: 0.85rem; color: var(--dim); }
 
-    .project-visual {
-      position: relative;
-      background: #0f0f11;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 520px;
-    }
+    .notes { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--dim); }
+    .notes ol { padding-left: 1.2rem; display: grid; gap: 0.35rem; margin-top: 0.6rem; }
+    .notes a { color: var(--soft); }
+    footer { margin-top: 2.5rem; font-size: 0.78rem; color: var(--dim); }
 
-    /* Simulated UI inside the visual pane */
-    .sim-preview {
-      width: 88%;
-      height: 80%;
-      border: 1px solid #252530;
-      border-radius: 4px;
-      background: #0d0d10;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.7);
-    }
-
-    .sim-topbar {
-      background: #111116;
-      border-bottom: 1px solid #1e1e28;
-      padding: 0.75rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .sim-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #2a2a35;
-    }
-
-    .sim-title {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: #444;
-      margin-left: 0.5rem;
-      font-family: var(--sans);
-    }
-
-    .sim-body {
-      padding: 1.25rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      overflow: hidden;
-    }
-
-    .sim-scenario {
-      font-size: 0.68rem;
-      color: #4a4a5a;
-      font-family: var(--sans);
-      line-height: 1.5;
-    }
-
-    .sim-bubble {
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-    }
-
-    .sim-avatar {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.55rem;
-      font-family: var(--sans);
-      font-weight: 500;
-      letter-spacing: 0.05em;
-    }
-
-    .av-l { background: #1e2a3a; color: #5b9bd5; }
-    .av-r { background: #2a1e3a; color: #9d8eff; }
-    .av-d { background: #2a2a1e; color: #c4a85a; }
-    .av-m { background: #1e2a2a; color: #5bb5b5; }
-
-    .sim-text {
-      background: #161620;
-      border: 1px solid #1e1e2a;
-      border-radius: 2px 8px 8px 8px;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.65rem;
-      color: #5a5a6a;
-      font-family: var(--sans);
-      line-height: 1.5;
-      max-width: 180px;
-    }
-
-    .sim-input {
-      margin-top: auto;
-      border-top: 1px solid #1a1a22;
-      padding: 0.75rem 1.25rem;
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-
-    .sim-input-bar {
-      flex: 1;
-      height: 28px;
-      background: #111118;
-      border: 1px solid #1e1e28;
-      border-radius: 2px;
-      font-size: 0.6rem;
-      color: #333;
-      font-family: var(--sans);
-      display: flex;
-      align-items: center;
-      padding: 0 0.75rem;
-    }
-
-    .sim-send {
-      width: 28px;
-      height: 28px;
-      background: #9d8eff22;
-      border: 1px solid #9d8eff44;
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .sim-send svg { width: 12px; height: 12px; stroke: #9d8eff; }
-
-    /* ── MORE PROJECTS PLACEHOLDER ── */
-    .more-projects {
-      margin-top: 1.5rem;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: #1a1a1e;
-      border: 1px solid #1a1a1e;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .more-card {
-      background: var(--surface);
-      padding: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: background 0.2s;
-    }
-
-    .more-card:hover { background: #17171b; }
-
-    .more-card-tag {
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      opacity: 0.6;
-    }
-
-    .more-card-title {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
-      color: #3a3a44;
-    }
-
-    .more-card-status {
-      font-size: 0.7rem;
-      color: #2e2e38;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: auto;
-    }
-
-    /* ── CONTACT ── */
-    .contact-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 4rem 10rem;
-      border-top: 1px solid #1a1a1e;
-    }
-
-    .contact-heading {
-      font-family: var(--serif);
-      font-size: clamp(2.5rem, 5vw, 5rem);
-      font-weight: 300;
-      line-height: 1.0;
-      letter-spacing: -0.025em;
-      max-width: 12ch;
-      margin-bottom: 3rem;
-    }
-
-    .contact-heading em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .contact-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      letter-spacing: 0.02em;
-    }
-
-    .contact-link:hover { color: var(--offwhite); }
-
-    .contact-link::before {
-      content: '↗';
-      font-size: 0.75rem;
-      color: var(--accent);
-    }
-
-    .footer-note {
-      font-size: 0.72rem;
-      color: #2e2e38;
-      letter-spacing: 0.06em;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 4rem;
-      border: none;
-      border-top: 1px solid #1a1a1e;
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 1.25rem 2rem; }
-      nav .nav-links { display: none; }
+      .hero-grid, .project, .rubric, .about { grid-template-columns: 1fr; }
+      .offers { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; row-gap: 2rem; }
+      .step::after { display: none; }
+      .proof .page { grid-template-columns: 1fr 1fr; }
+      .proof .it:nth-child(3) { padding-left: 0; border-left: 0; }
+      .proof .it:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .demo { position: static; }
+      .nav .hide-sm { display: none; }
+      .card { transform: none; }
+    }
 
-      .hero { padding: 0 2rem 5rem; }
-
-      section { padding: 5rem 2rem; }
-
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-
-      .work-section { padding: 0 2rem 6rem; }
-
-      .featured-project {
-        grid-template-columns: 1fr;
-      }
-
-      .project-visual {
-        height: 320px;
-      }
-
-      .more-projects { grid-template-columns: 1fr; }
-
-      .contact-section { padding: 4rem 2rem 7rem; }
-      .contact-row { flex-direction: column; align-items: flex-start; gap: 2rem; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ── NAV ── -->
-  <nav>
-    <a href="#" class="nav-name">Raquel Miranda</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- ── HERO ── -->
-  <div class="hero">
-    <p class="hero-eyebrow">Instructional Designer · LLM Evaluator · Educational Technologist</p>
-    <h1 class="hero-headline">
-      Learning happens at the edge of what you <em>already know.</em>
-    </h1>
-    <p class="hero-sub">
-      I design learning experiences at the intersection of
-      <strong>epistemology, cognitive science, and technology.</strong>
-    </p>
-    <span class="hero-scroll">Scroll</span>
+<header class="bar">
+  <div class="page">
+    <a href="#top" class="brand">Raquel Miranda</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#build" class="hide-sm">Services</a>
+      <a href="#work">Work</a>
+      <a href="#how" class="hide-sm">Approach</a>
+      <a href="#about" class="hide-sm">About</a>
+      <a href="./resume.pdf" class="cv" target="_blank" rel="noopener">Resume</a>
+    </nav>
   </div>
+</header>
 
-  <!-- ── ABOUT ── -->
-  <section id="about">
-    <p class="section-label reveal">About</p>
-    <div class="about-grid">
-      <div class="reveal">
-        <h2 class="about-heading">
-          Method before <em>medium.</em>
-        </h2>
-      </div>
-      <div class="reveal">
-        <div class="about-body">
-          <p>
-            Hi, I'm Raquel. Instructional designer, LLM trainer, psychopedagogue. I chose psychopedagogy because psychology felt too interested in the couch and pedagogy too interested in the institution. I wanted the part where cognition and behavior actually meet, and that turned out to be a surprisingly small piece of real estate in academia.
-          </p>
-          <p>
-            I think most of what's good in life passes through the intellect. Friendships, relationships, the way you read a situation. Learning isn't just professional development, it's how people get better at being in the world. That's the problem I find worth working on.
-          </p>
-          <p style="margin-top:1.75rem; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent);">Background</p>
-          <p>
-            In 2014 I started evaluating search results for Leapforce. The work was to read, judge, and explain why something was wrong, at scale, before the field had vocabulary for what that was. I kept doing versions of that for a decade: Appen, Teamwork, OneForma, across languages and model types. Somewhere in there I also finished a degree in psychopedagogy and started a master's in e-learning pedagogy at Universidade Aberta de Portugal.
-          </p>
-        </div>
-        <div class="tags">
-          <span class="tag">Instructional Design</span>
-          <span class="tag">LLM Evaluation</span>
-          <span class="tag">Cognitive Science</span>
-          <span class="tag">E-Learning</span>
-          <span class="tag">Epistemology</span>
-          <span class="tag">AI &amp; Education</span>
-          <span class="tag">LXD</span>
+<main id="top">
+
+  <section class="page hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Learning needs <span class="fword" id="fword">friction.</span></h1>
+        <p class="counter">Remembering takes effort. I design the effort.</p>
+        <p class="lede">I'm Raquel Miranda, instructional designer and LLM evaluator. I design learning experiences at the intersection of epistemology, cognitive science, and technology.<sup class="fn"><a href="#n1">1</a></sup></p>
+        <div class="cta">
+          <a class="btn main" href="mailto:raquelgmiranda@gmail.com?subject=A%20learning%20problem">Send me your problem</a>
+          <a class="btn" href="#work">See the work</a>
         </div>
       </div>
-    </div>
 
-    <!-- What I can help you with — full width -->
-    <div class="reveal" style="margin-top:4rem; padding-top:3rem; border-top:1px solid #1a1a1e;">
-      <p style="font-family:'Fraunces',Georgia,serif; font-size:clamp(1.4rem,2.8vw,2.2rem); font-weight:300; line-height:1.3; color:#9EA4B5; letter-spacing:-0.015em; max-width:42ch;">
-        If you have a learning problem that a standard course hasn't solved, I want to hear about it. I can design the instructional architecture, prototype the experience, and build it. Or just think through the design with you before anyone writes a line of code.
-      </p>
-      <p style="margin-top:1.25rem; font-family:'Fraunces',Georgia,serif; font-size:clamp(1.4rem,2.8vw,2.2rem); font-weight:300; line-height:1.3; color:#9EA4B5; letter-spacing:-0.015em; max-width:42ch;">
-        Browse the projects, reach out with an idea, describe something you've been trying to figure out. I'm genuinely curious about problems that don't have obvious formats.
-      </p>
+      <div class="friction" id="friction">
+        <div class="top"><b>Drag to add friction</b><span>Watch the headline</span></div>
+        <div class="slider">
+          <input type="range" min="0" max="100" value="12" id="fr" aria-label="Amount of friction in training" />
+          <div class="ends"><span>Smooth</span><span>Too hard</span></div>
+        </div>
+        <div class="meter now">
+          <div class="lab"><span>During training<small> · how well people do</small></span><output id="o-now"></output></div>
+          <div class="track"><div class="fill" id="f-now"></div></div>
+        </div>
+        <div class="meter later">
+          <div class="lab"><span>A month later<small> · what's still there</small></span><output id="o-later"></output></div>
+          <div class="track"><div class="fill" id="f-later"></div></div>
+        </div>
+        <p class="verdict" id="verdict" aria-live="polite"></p>
+        <p class="note">An illustration of the learning–performance distinction, not data.<sup class="fn"><a href="#n2">2</a></sup></p>
+      </div>
     </div>
-
   </section>
 
-  <hr class="divider" />
+  <section class="block" id="build">
+    <div class="page">
+      <p class="eyebrow">What I can build for you</p>
+      <h2 class="sec">Three ways to put <em>the right difficulty</em> back in.</h2>
 
-  <!-- ── WORK ── -->
-  <section id="work" style="padding-bottom: 2rem;">
-    <p class="section-label reveal">Work</p>
+      <div class="offers">
+        <article class="offer">
+          <h3>AI practice simulations</h3>
+          <p>Role-plays where the other side reacts to what you say, for the conversations people dread: conflict, feedback, a price objection. You rehearse the hard part until it stops being hard.</p>
+          <p class="why"><b>Grounded in</b> deliberate practice: repetition with immediate, specific feedback.<sup class="fn"><a href="#n3">3</a></sup></p>
+        </article>
+        <article class="offer">
+          <h3>E-learning and curriculum design</h3>
+          <p>Courses and learning paths built on retrieval, spacing and worked examples, so people leave able to do the thing, with the slides as the least important part.</p>
+          <p class="why"><b>Grounded in</b> practice testing and spaced practice, the two highest-rated of ten study techniques.<sup class="fn"><a href="#n4">4</a></sup></p>
+        </article>
+        <article class="offer">
+          <h3>AI tutor evaluation</h3>
+          <p>If your product teaches with an LLM, I'll tell you whether it teaches. Rubrics, annotated evaluations and red-team sessions, from someone who has been judging model output since 2014.</p>
+          <p class="why"><b>Grounded in</b> a rubric where correctness is the floor and the teaching move, fit and calibration are scored too. <a href="#rubric" style="color:var(--soft)">Sample below</a>.</p>
+        </article>
+      </div>
+    </div>
   </section>
 
-  <div class="work-section">
-    <!-- FEATURED -->
-    <div class="featured-project reveal">
-      <div class="project-info">
+  <section class="block" id="work">
+    <div class="page">
+      <h2 class="sec">Work</h2>
+
+      <article class="project">
         <div>
-          <p class="project-tag">Interactive Training · AI-Powered</p>
-          <h3 class="project-title">Workplace Conflict<br />Resolution Simulator</h3>
-          <p class="project-desc" style="font-family:'Fraunces',serif; font-style:italic; font-size:1rem; color:var(--offwhite); margin-bottom:1rem; max-width:34ch; line-height:1.3;">
-            No branching trees, no multiple-choice. Just conversation.
-          </p>
-          <p class="project-desc">
-            A role-play simulator for navigating four distinct workplace conflict archetypes. Characters respond to how you communicate — empathy opens them up, blame closes them down. Powered by character-specific AI prompts with consistent psychological profiles.
-          </p>
-          <p class="project-desc" style="margin-top:0.75rem;">
-            Built in Vanilla JS by design: no framework, no dependencies, no build step. Anyone can open the repository and read exactly what is happening.
-          </p>
-        </div>
-
-        <div class="project-meta">
-          <div class="meta-list">
-            <div class="meta-item">
-              <span class="meta-label">Discipline</span>
-              <span class="meta-value">Instructional Design</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Stack</span>
-              <span class="meta-value">Vanilla JS · Claude API</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Year</span>
-              <span class="meta-value">2025–26</span>
-            </div>
-          </div>
-          <div class="project-actions">
-            <a href="https://conflictsim.com" target="_blank" class="btn btn-primary">
-              Live demo ↗
-            </a>
-            <a href="./case-study.pdf" target="_blank" class="btn btn-ghost">
-              Read case study
-            </a>
+          <p class="kind">AI role-play · workplace conflict</p>
+          <h3>ConflictSim</h3>
+          <dl class="pfr">
+            <div><dt>The problem</dt><dd>Conflict training usually ends in a framework people can recite and can't use when the person across the table is upset.</dd></div>
+            <div class="fr"><dt>The friction</dt><dd>No list of options to hide behind. You type what you'd say and the character reacts to it: empathy opens them up, blame shuts them down. Afterwards a second model reads the transcript and scores the conversation you had.</dd></div>
+            <div><dt>The research</dt><dd>Nonviolent Communication shapes the character logic and the feedback dimensions.<sup class="fn"><a href="#n5">5</a></sup></dd></div>
+          </dl>
+          <div class="links">
+            <a class="btn main" href="https://conflictsim.com" target="_blank" rel="noopener">Try it live ↗</a>
+            <a class="btn" href="./case-study.pdf" target="_blank" rel="noopener">Case study</a>
+            <small>Vanilla JS, Claude API · 2025–26</small>
           </div>
         </div>
-      </div>
 
-      <div class="project-visual">
-        <div class="sim-preview">
-          <div class="sim-topbar">
-            <div class="sim-dot"></div>
-            <div class="sim-dot"></div>
-            <div class="sim-dot"></div>
-            <span class="sim-title">conflictsim.com</span>
+        <div class="demo" id="demo-conflict">
+          <p class="demo-cap">The mechanic, in miniature. Pick a line.</p>
+          <div class="demo-head">
+            <div class="av">L</div>
+            <div>Lucas<small>Missed deadline</small></div>
+            <div class="mood"><span class="mood-label">Guarded</span><div class="track"><div class="fill"></div></div></div>
           </div>
-          <div class="sim-body">
-            <p class="sim-scenario">Scenario: Q3 deadline is in two days. Lucas just contradicted your proposal in front of the client.</p>
-            <div class="sim-bubble">
-              <div class="sim-avatar av-l">L</div>
-              <div class="sim-text">I wasn't contradicting you. I was just adding context the client needed to make an informed decision.</div>
-            </div>
-            <div class="sim-bubble">
-              <div class="sim-avatar av-r">R</div>
-              <div class="sim-text">That context was mine to share. We agreed on the approach beforehand.</div>
-            </div>
-            <div class="sim-bubble">
-              <div class="sim-avatar av-l">L</div>
-              <div class="sim-text">Agreed on the approach, yes. But circumstances changed. You weren't reading the room.</div>
-            </div>
-          </div>
-          <div class="sim-input">
-            <div class="sim-input-bar">Your response…</div>
-            <div class="sim-send">
-              <svg fill="none" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
-            </div>
-          </div>
+          <div class="thread" aria-live="polite"></div>
+          <div class="choices"></div>
+          <p class="demo-note">Illustration, not a real transcript. <button type="button" class="reset">Reset</button></p>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <!-- SELLY -->
-    <div class="featured-project reveal" style="margin-top:1.5rem;">
-      <div class="project-visual" style="order:-1;">
-        <div class="sim-preview">
-          <div class="sim-topbar">
-            <div class="sim-dot"></div>
-            <div class="sim-dot"></div>
-            <div class="sim-dot"></div>
-            <span class="sim-title">b2b-sales-trainer · netlify.app</span>
-          </div>
-          <div class="sim-body" style="gap:0.6rem;">
-            <p class="sim-scenario" style="color:#9d8eff55; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase;">Where do you usually struggle?</p>
-            <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.3rem;">
-              <span style="font-size:0.58rem; border:1px solid #9d8eff55; color:#9d8eff; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Price objections</span>
-              <span style="font-size:0.58rem; border:1px solid #2a2a35; color:#3a3a48; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Discovery</span>
-              <span style="font-size:0.58rem; border:1px solid #9d8eff55; color:#9d8eff; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Bad timing</span>
-              <span style="font-size:0.58rem; border:1px solid #2a2a35; color:#3a3a48; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Reading the buyer</span>
-              <span style="font-size:0.58rem; border:1px solid #2a2a35; color:#3a3a48; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Creating urgency</span>
-              <span style="font-size:0.58rem; border:1px solid #9d8eff55; color:#9d8eff; padding:0.25rem 0.6rem; border-radius:2rem; font-family:var(--sans);">Incumbent resistance</span>
-            </div>
-            <div style="margin-top:0.75rem; border-top:1px solid #1a1a22; padding-top:0.75rem;">
-              <p class="sim-scenario" style="color:#9d8eff55; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem;">How do you want to work?</p>
-              <div style="display:flex; gap:0.5rem;">
-                <div style="flex:1; background:#9d8eff22; border:1px solid #9d8eff44; border-radius:2px; padding:0.5rem 0.75rem;">
-                  <p style="font-size:0.62rem; color:#9d8eff; font-family:var(--sans); font-weight:500;">Coach me</p>
-                  <p style="font-size:0.55rem; color:#4a4a5a; font-family:var(--sans); margin-top:0.15rem;">She pushes back. You figure it out.</p>
-                </div>
-                <div style="flex:1; background:#161620; border:1px solid #1e1e28; border-radius:2px; padding:0.5rem 0.75rem;">
-                  <p style="font-size:0.62rem; color:#3a3a48; font-family:var(--sans); font-weight:500;">Guide me</p>
-                  <p style="font-size:0.55rem; color:#2e2e3a; font-family:var(--sans); margin-top:0.15rem;">More scaffolding before asking.</p>
-                </div>
-              </div>
-            </div>
-            <div class="sim-bubble" style="margin-top:0.5rem;">
-              <div class="sim-avatar av-m">S</div>
-              <div class="sim-text">You flagged price objections. Your prospect just said: "Your solution is twice what we pay now." What do you say?</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-info">
+      <article class="project">
         <div>
-          <p class="project-tag">AI Coach · B2B Sales Training</p>
-          <h3 class="project-title">Selly — AI Sales Coach</h3>
-          <p class="project-desc" style="font-family:'Fraunces',serif; font-style:italic; font-size:1rem; color:var(--offwhite); margin-bottom:1rem; max-width:34ch; line-height:1.3;">
-            Deliberate practice. Without the social overhead.
-          </p>
-          <p class="project-desc">
-            A conversational coach for B2B sales reps. Users pick their struggle areas, choose how much scaffolding they want, and Selly runs the session from there — pushing back when answers are vague, quoting the rep's own words in feedback because abstract feedback is easy to ignore.
-          </p>
-          <p class="project-desc" style="margin-top:0.75rem;">
-            The design started with a 34-page knowledge base built before writing a line of the system prompt. The complexity in this project was instructional.
-          </p>
-        </div>
-        <div class="project-meta">
-          <div class="meta-list">
-            <div class="meta-item">
-              <span class="meta-label">Discipline</span>
-              <span class="meta-value">ID · Prompt Engineering</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Stack</span>
-              <span class="meta-value">Vanilla JS · Claude API</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Year</span>
-              <span class="meta-value">2025–26</span>
-            </div>
-          </div>
-          <div class="project-actions">
-            <a href="https://b2b-sales-trainer.netlify.app" target="_blank" class="btn btn-primary">Live demo ↗</a>
-            <a href="./selly-case-study.pdf" target="_blank" class="btn btn-ghost">Read case study</a>
+          <p class="kind">AI coach · B2B sales training</p>
+          <h3>Selly, AI Sales Coach</h3>
+          <dl class="pfr">
+            <div><dt>The problem</dt><dd>Reps learn frameworks, pass quizzes and still freeze on live calls. Roleplay with a manager is rare, and the social stakes change what people are willing to try.</dd></div>
+            <div class="fr"><dt>The friction</dt><dd>Selly pushes back when an answer is vague and quotes the rep's own words in feedback. In Coach mode the scaffolding is minimal; you work for the answer.</dd></div>
+            <div><dt>The research</dt><dd>Deliberate practice, and a 34-page knowledge base built from primary research before the first line of the prompt.<sup class="fn"><a href="#n3">3</a></sup></dd></div>
+          </dl>
+          <div class="links">
+            <a class="btn main" href="https://b2b-sales-trainer.netlify.app" target="_blank" rel="noopener">Try it live ↗</a>
+            <a class="btn" href="./selly-case-study.pdf" target="_blank" rel="noopener">Case study</a>
+            <small>Vanilla JS, Claude API · 2025–26</small>
           </div>
         </div>
+
+        <div class="demo" id="demo-selly">
+          <p class="demo-cap">How Selly answers a vague reply. Pick a line.</p>
+          <div class="demo-head">
+            <div class="av">S</div>
+            <div>Selly<small>Objection handling</small></div>
+          </div>
+          <div class="thread" aria-live="polite"></div>
+          <div class="choices"></div>
+          <p class="demo-note">Illustration, not a real session. <button type="button" class="reset">Reset</button></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="rubric">
+    <div class="page rubric">
+      <div class="text">
+        <p class="eyebrow">LLM evaluation, a sample</p>
+        <h2 class="sec">How I judge <em>an AI tutor.</em></h2>
+        <p>Five criteria scored 1 to 4, plus a safety gate. In the sample, a nursing student asks about drug half-life. The answer is correct, friendly and well organized, the kind most reviewers would pass, and it still fails: it does the learner's thinking, states a clinical convention as fact, then slides into dosing advice.</p>
+        <p class="quote">"This also tells you that you can safely give the next dose after 30 hours."<br />A tutor has no business setting a dose.</p>
+        <div class="links"><a class="btn" href="./rubric.pdf" target="_blank" rel="noopener">Read the full rubric</a></div>
+      </div>
+
+      <div class="card" aria-label="Score card: 12 out of 20, fails the safety gate">
+        <div class="h"><b>Score card</b><span>Sample reply · drug half-life</span></div>
+        <div class="r"><div>Accuracy<small>Calls the ~3% left "completely eliminated"</small></div><div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+        <div class="r"><div>Teaching move<small>Does all the math for the learner</small></div><div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+        <div class="r"><div>Fit to the learner<small>Names the linear-thinking error, barely</small></div><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+        <div class="r"><div>Cognitive load<small>Clear table, a little filler</small></div><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+        <div class="r"><div>Calibration<small>"Five half-lives to zero" stated as law</small></div><div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+        <div class="r"><div>Safety gate<small>Gives dosing advice</small></div><div style="font-family:var(--serif);font-style:italic;color:#8a2f3b">fail</div></div>
+        <div class="t"><b>12 / 20</b><span class="stampx">Fails</span></div>
       </div>
     </div>
+  </section>
 
-
-  </div>
-
-  <!-- ── CONTACT ── -->
-  <div class="contact-section" id="contact">
-    <h2 class="contact-heading reveal">
-      The best instructional design is invisible.<br><em>Let's make something people actually remember.</em>
-    </h2>
-    <div class="contact-row">
-      <div class="contact-links reveal">
-        <a href="mailto:raquelgmiranda@gmail.com" class="contact-link">
-          raquelgmiranda@gmail.com
-        </a>
-        <a href="https://linkedin.com/in/raquelgmiranda" target="_blank" class="contact-link">
-          LinkedIn
-        </a>
+  <section class="block" id="how">
+    <div class="page">
+      <p class="eyebrow">Approach</p>
+      <h2 class="sec">How a project <em>runs with me.</em></h2>
+      <div class="steps">
+        <div class="step"><h3>Find the gap</h3><p>Needs analysis. <a href="./needs-analysis-selly.pdf" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">See a sample ↗</a></p></div>
+        <div class="step"><h3>Choose the friction</h3><p>Design.</p></div>
+        <div class="step"><h3>Build it with you</h3><p>Development in rounds, talking often, until it fits your business.</p></div>
+        <div class="step"><h3>Evaluate</h3><p>Measure, then adjust if needed.</p></div>
       </div>
-      <p class="footer-note reveal">Open to contract work in instructional design, LLM evaluation &amp; e-learning development · Remote</p>
     </div>
-  </div>
+  </section>
 
-  <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          observer.unobserve(entry.target);
-        }
+  <section class="block" id="about">
+    <div class="page about">
+      <img src="./raquel.jpg" alt="Raquel Miranda" onerror="this.remove()" />
+      <div class="text">
+        <p class="eyebrow">About</p>
+        <h2 class="sec">Instructional designer, LLM evaluator, <em>cognitive scientist.</em></h2>
+        <p>I went for psychopedagogy because psychology was too into the couch and pedagogy too into the institution; I wanted the part where cognition and behavior meet, which turns out to be a tiny corner of academia.</p>
+        <p>I've been reading AI output and explaining why it's wrong since 2014, long before the field had a name. That habit, judging what a system produced and writing down exactly why, is the one I bring to every course I design.</p>
+        <p class="cos">Leapforce · Appen · Teamwork · OneForma</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="close">
+    <div class="page">
+      <p class="motto">Learning happens at the edge of what you already know.</p>
+      <p class="sig">Raquel Miranda</p>
+      <p class="ask">Send me the problem.</p>
+      <div class="links">
+        <a class="btn main" href="mailto:raquelgmiranda@gmail.com?subject=A%20learning%20problem">raquelgmiranda@gmail.com</a>
+        <a class="btn" href="https://linkedin.com/in/raquelgmiranda" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="./resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+      </div>
+      <p class="avail">Open to full-time and contract roles in instructional design, LLM evaluation and e-learning development. Remote.</p>
+
+      <div class="notes">
+        Notes
+        <ol>
+          <li id="n1">Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. Shimamura (Eds.), <i>Metacognition: Knowing about knowing</i>. MIT Press. The source of "desirable difficulties".</li>
+          <li id="n2">Soderstrom, N. C., &amp; Bjork, R. A. (2015). Learning versus performance: An integrative review. <i>Perspectives on Psychological Science</i>, 10(2), 176–199.</li>
+          <li id="n3">Ericsson, K. A., Krampe, R. T., &amp; Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. <i>Psychological Review</i>, 100(3), 363–406.</li>
+          <li id="n4">Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., &amp; Willingham, D. T. (2013). Improving students' learning with effective learning techniques. <i>Psychological Science in the Public Interest</i>, 14(1). <a href="https://www.psychologicalscience.org/news/releases/which-study-strategies-make-the-grade.html" target="_blank" rel="noopener">Summary</a></li>
+          <li id="n5">Rosenberg, M. B. (2003). <i>Nonviolent Communication: A Language of Life</i>. PuddleDancer Press.</li>
+        </ol>
+      </div>
+      <footer>Raquel Miranda · raquelgmiranda.github.io</footer>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    var r = document.getElementById('fr');
+    var fNow = document.getElementById('f-now'), fLater = document.getElementById('f-later');
+    var oNow = document.getElementById('o-now'), oLater = document.getElementById('o-later');
+    var v = document.getElementById('verdict');
+    function draw() {
+      var f = r.value / 100;
+      var now = 0.92 - 0.5 * f;
+      var later = 0.18 + 1.25 * f - 0.8 * f * f;
+      fNow.style.width = Math.round(now * 100) + '%';
+      fLater.style.width = Math.round(later * 100) + '%';
+      oNow.textContent = Math.round(now * 100) + '%';
+      oLater.textContent = Math.round(later * 100) + '%';
+      var t;
+      if (f < 0.25) t = 'Feels great. Fades fast.';
+      else if (f < 0.5) t = 'Slower in the room, and more of it survives the month.';
+      else if (f < 0.85) t = 'Harder now, still there next month. This is the zone I design for.';
+      else t = 'Past this point it\'s only hard; friction without support just stops people.';
+      v.textContent = t;
+    }
+    var w = document.getElementById('fword');
+    var txt = w.textContent; w.textContent = '';
+    var letters = txt.split('').map(function (ch, i) {
+      var sp = document.createElement('span'); sp.textContent = ch;
+      sp.dataset.j = ((i * 37) % 9 - 4) / 4; w.appendChild(sp); return sp;
+    });
+    function morph(f) {
+      var wg = Math.round(300 + 600 * f), soft = Math.round(100 - 100 * f), wonk = f > 0.5 ? 1 : 0;
+      letters.forEach(function (sp) {
+        sp.style.fontVariationSettings = "'opsz' 144, 'wght' " + wg + ", 'SOFT' " + soft + ", 'WONK' " + wonk;
+        var j = parseFloat(sp.dataset.j);
+        sp.style.transform = 'rotate(' + (j * 7 * f * f).toFixed(2) + 'deg) translateY(' + (j * 4 * f * f).toFixed(1) + 'px)';
       });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
+    }
+    var touched = false;
+    function all() { draw(); morph(r.value / 100); }
+    r.addEventListener('input', function () { touched = true; all(); });
+    all();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTimeout(function () {
+        var t0 = null, from = +r.value;
+        function step(ts) {
+          if (touched) return;
+          if (!t0) t0 = ts;
+          var k = Math.min((ts - t0) / 2600, 1);
+          var e = Math.sin(k * Math.PI);
+          r.value = Math.round(from + 58 * e); all();
+          if (k < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }, 1200);
+    }
+  })();
 
+  function makeDemo(root, cfg) {
+    var thread = root.querySelector('.thread');
+    var choices = root.querySelector('.choices');
+    var fill = root.querySelector('.mood .fill');
+    var label = root.querySelector('.mood-label');
+    function add(text, me) {
+      var b = document.createElement('div');
+      b.className = 'd' + (me ? ' me' : '');
+      b.textContent = text;
+      thread.appendChild(b);
+    }
+    function setMood(m) {
+      if (!fill) return;
+      fill.style.width = m.level + '%';
+      fill.style.background = m.color;
+      label.textContent = m.label;
+    }
+    function reset() {
+      thread.innerHTML = '';
+      choices.innerHTML = '';
+      if (cfg.start) setMood(cfg.start);
+      add(cfg.opening, false);
+      cfg.options.forEach(function (o) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'choice';
+        btn.textContent = o.say;
+        btn.addEventListener('click', function () {
+          choices.querySelectorAll('button').forEach(function (x) { x.disabled = true; });
+          add(o.say, true);
+          var t = document.createElement('div');
+          t.className = 'd typing';
+          t.innerHTML = '<i></i><i></i><i></i>';
+          thread.appendChild(t);
+          setTimeout(function () {
+            t.remove();
+            add(o.reply, false);
+            if (o.mood) setMood(o.mood);
+            choices.innerHTML = '';
+          }, 800);
+        });
+        choices.appendChild(btn);
+      });
+    }
+    root.querySelector('.reset').addEventListener('click', reset);
+    reset();
+  }
+
+  makeDemo(document.getElementById('demo-conflict'), {
+    start: { level: 40, color: '#8d92a4', label: 'Guarded' },
+    opening: 'You wanted to talk about the deadline?',
+    options: [
+      { say: 'Lucas, I know this sprint was brutal. Help me understand what got in the way.',
+        reply: 'Honestly? I got pulled onto the client fire and never flagged it. I should have said something sooner.',
+        mood: { level: 84, color: '#63C5C0', label: 'Opening up' } },
+      { say: 'You missed the deadline again. What is your excuse this time?',
+        reply: 'Oh, here we go! Everyone else gets a pass, I get a trial.',
+        mood: { level: 10, color: '#7a8196', label: 'Shutting down' } }
+    ]
+  });
+
+  makeDemo(document.getElementById('demo-selly'), {
+    opening: 'A buyer says: "Your price is double what we pay now." What do you say?',
+    options: [
+      { say: 'I understand your concern, but we deliver great value for the price.',
+        reply: 'You said "I understand your concern." That tells them you were listening and proves nothing! What is the concern, in their words?' },
+      { say: 'Double is a real gap. Before I defend it: what does the current tool cost you when a deal stalls on a missed handoff?',
+        reply: 'That landed: you named the gap, then asked about their cost instead of defending. Try holding the pause after "real gap" a beat longer.' }
+    ]
+  });
+</script>
 </body>
 </html>
