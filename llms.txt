@@ -1,60 +1,67 @@
 # Raquel Miranda
 
-Instructional Designer · LLM Evaluator · Educational Technologist
+Instructional designer, LLM evaluator, psychopedagogue.
 
-Website: https://raquel-miranda.netlify.app
+Website: https://raquelgmiranda.github.io
+Resume: https://raquelgmiranda.github.io/resume.pdf
 Email: raquelgmiranda@gmail.com
 LinkedIn: https://linkedin.com/in/raquelgmiranda
 
 ## About
 
-I'm a psychopedagogue and instructional designer based in Brazil. Nearly a decade evaluating large language models for platforms like Leapforce, Appen, and Teamwork gave me technical intuition that most designers don't have, before AI evaluation became an industry unto itself.
+I'm a psychopedagogue and instructional designer based in Brazil. I started in 2014 evaluating search results and later language models, for platforms including Leapforce, Appen, Teamwork and OneForma, which gave me technical intuition that most instructional designers don't have.
 
-My foundation is in psychopedagogy and epistemology. What that means in practice: I ask what it means to know something before I decide how to teach it. I build tools that treat learners as thinking agents.
-
-The theory comes first. The design follows.
+My foundation is psychopedagogy and epistemology. In practice that means I ask what it means to know something before I decide how to teach it.
 
 Skills: Instructional Design, LLM Evaluation, Cognitive Science, E-Learning, Epistemology, AI & Education, LXD, Python, Vanilla JS, Claude API, n8n, Figma, Prompt Engineering, ADDIE, UDL, NVC
 
 ## Projects
 
-### Conflict Resolution Simulator
+### Conflict Resolution Simulator (ConflictSim)
 URL: https://conflictsim.com
-Case study: https://raquel-miranda.netlify.app/case-study.pdf
-Type: Interactive Training · AI-Powered
-Stack: Vanilla JS · Claude API
-Year: 2025–26
+Case study: https://raquelgmiranda.github.io/case-study.pdf
+Type: Interactive training, AI-powered
+Stack: Vanilla JS, Claude API
+Year: 2025-26
 
-A role-play simulator for navigating four distinct workplace conflict archetypes. Characters respond to how you communicate — empathy opens them up, blame closes them down. Powered by character-specific AI prompts with consistent psychological profiles. Built in Vanilla JS by design: no framework, no dependencies, no build step.
+A role-play simulator for four workplace conflict archetypes. Characters respond to how you communicate: empathy opens them up, blame shuts them down. Each character runs on its own prompt with a consistent psychological profile. A second model reads the transcript afterwards and gives structured feedback across four skill dimensions. Built in vanilla JS on purpose: no framework, no build step.
 
-Four scenarios: Lucas (missed deadline), Rita (idea theft), Daniel (scope creep), Marina (angry client). Each runs in Normal and Challenge mode. After each session, a second AI model analyzes the conversation and delivers structured feedback across four skill dimensions with a radar chart.
+Four scenarios: Lucas (missed deadline), Rita (idea theft), Daniel (scope creep), Marina (angry client). Each runs in Normal and Challenge mode.
 
-### Selly — AI Sales Coach
+### Selly, AI Sales Coach
 URL: https://b2b-sales-trainer.netlify.app
-Case study: https://raquel-miranda.netlify.app/selly-case-study.pdf
-Type: AI Coach · B2B Sales Training
-Stack: Vanilla JS · Claude API · Netlify Functions
-Year: 2025–26
+Case study: https://raquelgmiranda.github.io/selly-case-study.pdf
+Type: AI coach, B2B sales training
+Stack: Vanilla JS, Claude API, Netlify Functions
+Year: 2025-26
 
-A conversational coach for B2B sales reps. Users pick their struggle areas, choose how much scaffolding they want, and Selly runs the session from there — pushing back when answers are vague, quoting the rep's own words in feedback because abstract feedback is easy to ignore.
+A conversational coach for B2B sales reps. Users pick what they struggle with and how much scaffolding they want, and Selly pushes back when answers are vague. Feedback quotes the rep's own words, because abstract feedback is easy to ignore. The design started with a 34-page knowledge base written before the system prompt. Five topic areas: Objection Handling, Discovery, Reading the Buyer, Timing and Qualification, Value Selling. Two modes: Coach (minimal scaffolding) and Guide (more structure).
 
-The design started with a 34-page knowledge base built before writing a line of the system prompt. Five topic areas: Objection Handling, Discovery, Reading the Buyer, Timing and Qualification, Value Selling. Two modes: Coach (minimal scaffolding) and Guide (more structure). The complexity in this project was instructional.
+### The Next Button (phishing training)
+URL: https://raquelgmiranda.github.io/phishing.html
+Type: Interactive e-learning, information security
+Year: 2026
+
+A three-minute phishing module that opens as a deliberately dull training slide. Clicking "Next" out of habit triggers the lesson: that reflex is what phishing exploits. Learners then sort a fictional inbox, get feedback marked on the email they misjudged, and face a harder second round where the sender's account is genuine but compromised.
+
+### Croma Archive (in development)
+A course company co-founded by Raquel around the history of Brazilian graphic design. The first course is in development for Udemy.
 
 ## Experience
 
-- AI Linguistic Annotator & LLM Trainer, OneForma (Jul 2021 – Present)
-- Instructional Designer, Freelance (Oct 2023 – Present)
-- Copywriter, Ápice Comunica (May 2025 – May 2026)
-- LLM Quality Evaluator, Teamwork.com (Feb 2020 – Dec 2021)
-- QA for AI Training, Appen (Dec 2017 – Dec 2019)
-- AI Quality Analyst, Leapforce Inc. (Feb 2014 – Oct 2015)
+- AI Linguistic Annotator & LLM Trainer, OneForma (Jul 2021 to present)
+- Instructional Designer, Freelance (Oct 2023 to present)
+- Copywriter, Ápice Comunica (May 2025 to May 2026)
+- LLM Quality Evaluator, Teamwork.com (Feb 2020 to Dec 2021)
+- QA for AI Training, Appen (Dec 2017 to Dec 2019)
+- AI Quality Analyst, Leapforce Inc. (Feb 2014 to Oct 2015)
 
 ## Education
 
 - Specialization: Generative AI for Educators, IBM / Coursera (2025)
-- B.S. Psychopedagogy, Cruzeiro do Sul Virtual (2022–2024)
+- B.S. Psychopedagogy, Cruzeiro do Sul Virtual (2022 to 2024)
 - e-Learning Ecologies, University of Illinois Urbana-Champaign (2025)
 
 ## Availability
 
-Open to contract work in instructional design, LLM evaluation, and e-learning development. Remote.
+Open to full-time and contract roles in instructional design, LLM evaluation and e-learning development. Remote.
